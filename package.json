@@ -1,0 +1,34 @@
+{
+  "name": "fireworks",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "http-server ./dist/",
+    "all": "npm build && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fraune/fireworks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fraune/fireworks/issues"
+  },
+  "homepage": "https://github.com/fraune/fireworks#readme",
+  "devDependencies": {
+    "@types/d3": "^6.2.0",
+    "http-server": "^0.12.3",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0"
+  },
+  "dependencies": {
+    "d3": "^6.3.1"
+  }
+}
