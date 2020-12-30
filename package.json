@@ -5,9 +5,10 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -f ./dist/bundle.js",
     "build": "webpack",
     "start": "http-server ./dist/",
-    "all": "npm build && npm start"
+    "all": "npm run clean && npm run build && npm run start"
   },
   "repository": {
     "type": "git",

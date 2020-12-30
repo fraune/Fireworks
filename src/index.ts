@@ -1,11 +1,19 @@
-import * as d3 from "d3";
+import * as d3 from 'd3';
+import { Fireworks } from './fireworks';
 
-function component() {
-    const element = document.createElement('div');
+var fireworks: Fireworks;
 
-    element.innerHTML = "hello";
+window.addEventListener('load', (event) => {
+    console.log('Page loaded.');
+    initialize();
+});
 
-    return element;
+function initialize() {
+    const launchButton = document.getElementById('launch-button');
+    if (launchButton) {
+        launchButton.addEventListener('click', _ => fireworks.launch());
+    }
+
+    const svg = d3.select('#fireworks')
+    fireworks = new Fireworks(svg)
 }
-
-document.body.appendChild(component());

@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.fireworks {
+    flex: 1 1 auto;
+}
+
+.controls {
+    background-color: grey;
+    flex: 0 1 auto;
+    padding: 5px;
+    text-align: center;
+}
