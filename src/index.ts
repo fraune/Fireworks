@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { FireworksDisplay } from './fireworks/fireworks-display'
 
-var fireworksApplication: FireworksDisplay
+var fireworksDisplay: FireworksDisplay
 
 window.addEventListener('load', (event) => {
     console.log('Page loaded.')
@@ -10,10 +10,10 @@ window.addEventListener('load', (event) => {
 
 function initialize() {
     const svg = d3.select('#fireworks')
-    fireworksApplication = new FireworksDisplay(svg)
+    fireworksDisplay = new FireworksDisplay(svg)
 
     const launchButton = document.getElementById('launch-button')
     if (launchButton) {
-        launchButton.addEventListener('click', _ => fireworksApplication.launch())
+        launchButton.addEventListener('click', _ => fireworksDisplay.launch())
     }
 }

@@ -1,4 +1,5 @@
-import d3 from "d3";
+import d3 from "d3"
+import { Particle } from "./particle"
 
 export class FireworksDisplay {
 
@@ -6,8 +7,8 @@ export class FireworksDisplay {
     private height: number = 0
     private launcher: any = null
 
-    private static readonly launchTime: number = 2000;
-    private static readonly particleMovement: number = 50;
+    private static readonly launchTime: number = 2000
+    private static readonly particleMovement: number = 3
 
     constructor(
         private svg: any
@@ -40,7 +41,12 @@ export class FireworksDisplay {
             "width": 3,
             "height": 5
         }
-        const particleCount: number = 50
+        const particleCount: number = 10
+
+        const endCoordinates = {
+            'x': this.width / 2,
+            'y': this.height / 4
+        }
 
         let firework = this.svg.append('line')
             .style('stroke', '#444444')
@@ -52,18 +58,18 @@ export class FireworksDisplay {
 
         firework.transition()
             .duration(FireworksDisplay.launchTime)
-            .attr('x1', this.width / 2)
-            .attr('y1', this.height / 3)
-            .attr('x2', this.width / 2)
-            .attr('y2', (this.height - 5) / 3)
+            .attr('x1', endCoordinates['x'])
+            .attr('y1', this.height / 4)
+            .attr('x2', endCoordinates['x'])
+            .attr('y2', (this.height - 5) / 4)
             .remove()
 
-        let endCoordinates = {
-            'x': this.width / 2,
-            'y': this.height / 3
-        }
+        setTimeout(() => {
+            let particle = new Particle(this.svg, endCoordinates['x'], endCoordinates['y'], particleCount)
+        }, FireworksDisplay.launchTime);
+        console.log('draw particle')
 
-        // setTimeout(() => this.generateParticles(endCoordinates['x'], endCoordinates['y']), FireworksDisplay.launchTime);
+        // setTimeout(() => this.generateParticles(endCoordinates['x'], endCoordinates['y']), FireworksDisplay.launchTime)
 
     }
 
