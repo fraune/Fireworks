@@ -1,3 +1,5 @@
+import * as d3 from "d3";
+
 export class Particle {
 
     // private static readonly gravity: number = 10
@@ -23,6 +25,9 @@ export class Particle {
     }
 
     private makeParticleCircle(count: number): void {
+        const size: number = 250
+        const time: number = size * 10
+
         for (let i = 0; i < count; i++) {
             setTimeout(() => {
                 this.svg.append('circle')
@@ -33,12 +38,14 @@ export class Particle {
                     .style("stroke-dasharray", ("5,5")) // make the stroke dashed
                     .style('stroke-width', '5')
                     .transition()
-                    .duration(4000)
+                    .ease(d3.easeExpOut)
+                    .duration(time)
                     .style("stroke", this.getRandomColor())
-                    .attr('r', 500)
-                    .style('stroke-width', '1000')
+                    .attr('r', size)
+                    .style('stroke-width', size * 2)
+                    .style('opacity', .75)
                     .transition()
-                    .duration(2000)
+                    .duration(2500)
                     .style('opacity', 0)
                     .remove()
             }, 50 * i);

@@ -1,5 +1,6 @@
-import d3 from "d3"
+import * as d3 from "d3"
 import { Particle } from "./particle"
+import { faCamera, faDog } from '@fortawesome/free-solid-svg-icons'
 
 export class FireworksDisplay {
 
@@ -15,8 +16,14 @@ export class FireworksDisplay {
     ) {
         this.width = this.svg.style("width").replace("px", "")
         this.height = this.svg.style("height").replace("px", "")
+
+        console.log(`height: ${this.height}`)
+        console.log(`width: ${this.width}`)
+
         this.setBackdrop()
         this.drawLauncher()
+
+        this.drawAndAnimateDog();
 
         this.test()
     }
@@ -36,6 +43,35 @@ export class FireworksDisplay {
             .attr('y2', this.height - 10)
     }
 
+    private drawAndAnimateDog(): void {
+        const dogSize = 50
+
+        this.svg.append('svg')
+            .html('<i class="fas fa-dog"></i>')
+            .style('font-size', dogSize)
+            .attr('height', dogSize)
+            .attr('width', dogSize)
+            .attr('color', 'hotpink')
+            .on('click', () => {
+                console.log('dogclick')
+            })
+            .attr('x', -dogSize)
+            .attr('y', this.height - dogSize)
+            .transition()
+            .duration(10000)
+            .attr('x', this.width)
+            .attr('y', this.height - dogSize)
+            .remove()
+
+
+        // .attr
+
+        // this.svg.append('svg:')
+        // .html('<i class="fas fa-info-circle"></i>')
+        // .style('stroke', 'green')
+
+    }
+
     public launch(): void {
         const dimensions = {
             "width": 3,
@@ -43,25 +79,30 @@ export class FireworksDisplay {
         }
         const particleCount: number = 1
 
+        const startCoordinates = {
+            'x': this.width / 2,
+            'y': this.height
+        }
+
         const endCoordinates = {
             'x': this.width / 2,
             'y': this.height / 4
         }
 
-        let firework = this.svg.append('line')
-            .style('stroke', '#444444')
-            .style('stroke-width', 3)
-            .attr('x1', this.width / 2)
-            .attr('y1', this.height)
-            .attr('x2', this.width / 2)
-            .attr('y2', this.height - dimensions.height)
+        let mortar = this.svg.append('line')
+            .style('stroke', '#777777')
+            .style('stroke-width', dimensions['width'])
+            .attr('x1', startCoordinates['x'])
+            .attr('y1', startCoordinates['y'])
+            .attr('x2', startCoordinates['x'])
+            .attr('y2', startCoordinates['y'] - dimensions.height)
 
-        firework.transition()
+        mortar.transition()
             .duration(FireworksDisplay.launchTime)
             .attr('x1', endCoordinates['x'])
-            .attr('y1', this.height / 4)
+            .attr('y1', endCoordinates['y'])
             .attr('x2', endCoordinates['x'])
-            .attr('y2', (this.height - 5) / 4)
+            .attr('y2', endCoordinates['y'] - dimensions.height)
             .remove()
 
         setTimeout(() => {
