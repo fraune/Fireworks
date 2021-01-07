@@ -36,6 +36,9 @@ export class Particle {
                     .duration(4000)
                     .style("stroke", this.getRandomColor())
                     .attr('r', 500)
+                    .style('stroke-width', '1000')
+                    .transition()
+                    .duration(2000)
                     .style('opacity', 0)
                     .remove()
             }, 50 * i);

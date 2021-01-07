@@ -41,7 +41,7 @@ export class FireworksDisplay {
             "width": 3,
             "height": 5
         }
-        const particleCount: number = 10
+        const particleCount: number = 1
 
         const endCoordinates = {
             'x': this.width / 2,
