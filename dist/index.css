@@ -19,3 +19,8 @@ html, body {
     padding: 5px;
     text-align: center;
 }
+
+.launch-button {
+    background-color: purple;
+    color: white;
+}
